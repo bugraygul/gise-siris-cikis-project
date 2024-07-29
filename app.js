@@ -1,6 +1,7 @@
 let startDate = null;
 let endDate = null;
 let clickCount = 0;
+var data=fetch("Turnike_giris_Cikis.json");
 
 const jsonData = [
     {"PERSONEL_NO":100852,"ADI_SOYADI":"BING_BONG","TARIH":"04.01.2024","SAAT":"08:25:00","TURNIKE":"TK05 - TURNIKE-1 GIRIS (R11)"},
