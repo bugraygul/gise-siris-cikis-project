@@ -10,33 +10,36 @@ body {
 
 .container {
     background-color: #fff;
-    padding: 20px;
+    padding: 10px; /* Daha küçük padding */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 90%;
-    max-width: 800px;
+    width: 50%; /* Daha küçük boyut */
+    max-width: 300px; /* Daha küçük boyut */
 }
 
 h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin-bottom: 10px; /* Daha küçük margin */
+    font-size: 16px; /* Daha küçük yazı tipi boyutu */
     color: #333;
 }
 
 .buttons {
-    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Butonları yan yana yerleştirme */
+    margin-top: 10px; /* Daha küçük margin */
 }
 
 button {
-    padding: 10px 20px;
-    margin: 5px;
+    padding: 4px 8px; /* Daha küçük boyut */
+    margin: 3px;
     border: none;
     border-radius: 4px;
     background-color: #007BFF;
     color: #fff;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px; /* Daha küçük yazı tipi boyutu */
+    flex: 1; /* Butonların aynı boyutta olmasını sağlama */
 }
 
 button:hover {
@@ -44,20 +47,20 @@ button:hover {
 }
 
 #result {
-    margin-top: 20px;
-    font-size: 1.2em;
+    margin-top: 10px; /* Daha küçük margin */
+    font-size: 1em; /* Daha küçük yazı tipi boyutu */
     color: #333;
 }
 
 #calendar {
-    margin: 20px 0;
+    margin: 10px 0; /* Daha küçük margin */
 }
 
 .fc-toolbar {
-    margin-bottom: 20px; /* Takvimin üst kısmını görünür yapar */
+    margin-bottom: 10px; /* Daha küçük margin */
 }
 
 .fc {
-    direction: ltr; /* FullCalendar'ın düzgün çalışması için yönü belirtin */
+    direction: ltr;
     text-align: left;
 }

@@ -1,7 +1,6 @@
 let startDate = null;
 let endDate = null;
 let clickCount = 0;
-var data=fetch("Turnike_giris_Cikis.json");
 
 const jsonData = [
     {"PERSONEL_NO":100852,"ADI_SOYADI":"BING_BONG","TARIH":"04.01.2024","SAAT":"08:25:00","TURNIKE":"TK05 - TURNIKE-1 GIRIS (R11)"},
@@ -22,6 +21,11 @@ $(document).ready(function() {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
+        },
+        defaultDate: '2024-01-01',
+        validRange: {
+            start: '2024-01-01',
+            end: '2024-01-31'
         },
         selectable: true,
         selectHelper: true,
@@ -115,5 +119,37 @@ function showWorkDuration() {
     });
 
     const resultDiv = document.getElementById('result');
-    resultDiv.textContent = Seçilen tarihler arasındaki toplam çalışma süresi: ${totalMinutes} dakika;
+    resultDiv.textContent = Seçilen tarihler arasındaki toplam çalışma süresi: ${totalMinutes} dakika;
+}
+
+function showBreakDuration() {
+    if (!startDate || !endDate) {
+        alert('Lütfen başlangıç ve bitiş tarihlerini seçin.');
+        return;
+    }
+
+    const startStr = startDate.format('YYYY-MM-DD');
+    const endStr = endDate.format('YYYY-MM-DD');
+
+    const filteredData = jsonData.filter(entry => {
+        const entryDate = moment(entry.TARIH, 'DD.MM.YYYY');
+        return entryDate.isBetween(startStr, endStr, null, '[]');
+    });
+
+    let totalBreakMinutes = 0;
+    let exitTime = null;
+
+    filteredData.forEach(entry => {
+        const entryDateTime = moment(${entry.TARIH} ${entry.SAAT}, 'DD.MM.YYYY HH:mm:ss');
+        if (entry.TURNIKE.includes('CIKIS')) {
+            exitTime = entryDateTime;
+        } else if (entry.TURNIKE.includes('GIRIS') && exitTime) {
+            const entryTime = entryDateTime;
+            totalBreakMinutes += entryTime.diff(exitTime, 'minutes');
+            exitTime = null;
+        }
+    });
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.textContent = Seçilen tarihler arasındaki toplam mola süresi: ${totalBreakMinutes} dakika;
 }
